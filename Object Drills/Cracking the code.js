@@ -8,27 +8,20 @@ let cypher = {
 }
 
 function decodeWord(word) {
-  switch(word[0]) {
-  case 'a':
-    return word[cypher.a - 1];
-  case 'b':
-    return word[cypher.b - 1];
-  case 'c':
-    return word[cypher.c - 1];
-  case 'd':
-    return word[cypher.d - 1];
-  default:
-    return ' ';
+  let firstChar = word[0];
+  let index = cypher[firstChar];
+  if ( index === undefined) {
+    return " "
   }
+  else {
+    return word[index - 1];
+  }
+  
 }
-
 
 function decodeWords(words){
   // create an array of words
-  return words
-    .split(' ')
-    .map(word => decodeWord(word))
-    .join('');
+  return words.split(' ') .map(word => decodeWord(word)).join('');
 }
 
 let result = decodeWords('craft block argon meter bells brown croon droop');
