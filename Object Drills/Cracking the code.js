@@ -1,20 +1,36 @@
-function decoder(message) {
-    let words = message.split(' ');
-    let decoded = '';
-    for (let i = 0; i < words.length; i++) {
-        if (words[i][0] === 'a') {
-            decoded += words[i][1];
-        } else if (words[i][0] === 'b') {
-            decoded += words[i][2];
-        } else if (words[i][0] === 'c') {
-            decoded += words[i][3];
-        } else if (words[i][0] === 'd') {
-            decoded += words[i][4];
-        } else {
-            decoded += ' '
-        }
-    }
-    return decoded;
+'use strict';
+
+let cypher = {
+    a : 2,
+    b : 3,
+    c : 4,
+    d : 5
 }
 
-console.log(decoder('craft block argon meter bells brown croon droop'))
+function decodeWord(word) {
+  switch(word[0]) {
+  case 'a':
+    return word[cypher.a - 1];
+  case 'b':
+    return word[cypher.b - 1];
+  case 'c':
+    return word[cypher.c - 1];
+  case 'd':
+    return word[cypher.d - 1];
+  default:
+    return ' ';
+  }
+}
+
+
+function decodeWords(words){
+  // create an array of words
+  return words
+    .split(' ')
+    .map(word => decodeWord(word))
+    .join('');
+}
+
+let result = decodeWords('craft block argon meter bells brown croon droop');
+
+console.log(result);
